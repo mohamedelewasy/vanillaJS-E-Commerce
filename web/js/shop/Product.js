@@ -1,6 +1,6 @@
 export class Product {
   // count:number, page:number, limit:number, price: [{gte:number, lte:number}], color:[string]
-  static filters = {price:[], color:[]};
+  static filters = {price:[], color:[], size: []};
   constructor(product) {
     this.product = product;
   }
@@ -54,7 +54,7 @@ export class Product {
   };
 
   static getPginationQuery = (toPage=Product.filters.page)=>{
-    return `?page=${toPage}${Product.filters.price? `&price=${Product.filters.price}`:''}${Product.filters.color ? `&color=${Product.filters.color}`:''}`
+    return `?page=${toPage}${Product.filters.price? `&price=${Product.filters.price}`:''}${Product.filters.color ? `&color=${Product.filters.color}`:''}${Product.filters.size ? `&size=${Product.filters.size}`:''}${Product.filters.limit ? `&limit=${Product.filters.limit}`:''}`
   }
 
   static getHTMLPagination = () => {
@@ -81,9 +81,11 @@ export class Product {
     const limit = url.searchParams.get('limit');
     const price = url.searchParams.get('price')
     const color = url.searchParams.get('color')
+    const size = url.searchParams.get('size')
     Product.filters.page = page ? page : 1;
     Product.filters.limit = limit ? limit : 9;
     Product.filters.price = price ? price.split(',') : [];
     Product.filters.color = color ? color.split(',') : [];
+    Product.filters.size = size ? size.split(',') : [];
   };
 }

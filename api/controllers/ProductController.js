@@ -1,15 +1,15 @@
 const ProductModel = require("../models/Product");
 
 exports.getAllProducts = async (req, res) => {
-  let {limit, page, color, price} = req.query;
+  let {limit, page, color, price, size} = req.query;
   limit = limit ? +limit : 9;
   page = page ? +page : 1;
   skip = (page-1)*limit;
 
   const filterOptions = {}
   if(color) filterOptions.color = color.split(',')
-  // {$or: [{price:{$lte:100,$gte:0}}]}
   if(price) filterOptions.$or = price.split(',').map(el=>{return{price: {$lte:+el,$gte:+el-100}}})
+  if(size) filterOptions.size = size.split(',')
   try {
     const productsCount = await ProductModel.find(filterOptions).count();
     const products = await ProductModel.find(filterOptions).limit(limit).skip(skip);
