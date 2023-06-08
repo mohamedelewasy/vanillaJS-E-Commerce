@@ -9,6 +9,6 @@ export const fetchData = async(url, method, body=undefined) => {
     })
     return res.json()
   } catch (error) {
-    console.error(error)
+    throw(new Error(error))
   }
 };
