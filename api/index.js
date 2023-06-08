@@ -14,7 +14,7 @@ const orderRouter = require("./routes/OrderRoutes");
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@cluster0.dyslvrk.mongodb.net/?retryWrites=true&w=majority`,
+  "mongodb+srv://admin:123123123@cluster0.qbflnrn.mongodb.net/?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

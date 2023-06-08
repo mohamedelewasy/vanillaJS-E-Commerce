@@ -1,3 +1,5 @@
+import { isLogged, userContext } from "./user/userContext";
+
 (function ($) {
     "use strict";
     
@@ -102,3 +104,11 @@
     
 })(jQuery);
 
+const userIcon = document.querySelector('.user-icon')
+userIcon.addEventListener('click', ()=>{
+    const nestedList = document.querySelector('.nested-user-list');
+    nestedList.classList.toggle('d-none');
+    if(isLogged()){
+        nestedList.innerHTML = userContext.email
+    }
+})
