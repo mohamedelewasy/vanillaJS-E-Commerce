@@ -4,13 +4,15 @@ const OrderDetail = require('./models/OrderDetail');
 const Product = require('./models/Product');
 const User = require('./models/User');
 const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+dotenv.config();
 
 const color = ['black', 'white', 'red', 'blue', 'green'];
 const size = ['xs', 's', 'm', 'l', 'xl']
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-    "mongodb+srv://admin:123123123@cluster0.qbflnrn.mongodb.net/?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@cluster0.dyslvrk.mongodb.net/?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
