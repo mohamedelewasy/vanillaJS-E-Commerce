@@ -18,8 +18,9 @@ try {
     endpoints.getProducts.url + Product.getPginationQuery(),
     endpoints.getProducts.method
   );
-  Product.filters.count = res.count;
-  handleProductsHTMLElements(res.data);
+  Product.filters.count = res.data.length
+  const data = Product.addFilterAndPagination(res.data)
+  handleProductsHTMLElements(data);
 } catch (error) {
   console.log(error);
 }
